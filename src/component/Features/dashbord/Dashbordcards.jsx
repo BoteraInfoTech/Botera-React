@@ -1,14 +1,14 @@
 import React from "react";
 
-function FolderCard({ title, files, date, bgColor, textColor }) {
+function FolderCard({ title, value }) {
   return (
     <div
       className={`rounded-2xl p-5 shadow hover:shadow-lg transition duration-200`}
-      style={{ backgroundColor: bgColor, color: textColor || "white" }}
+      style={{ backgroundColor: "#FFFFFF", color: "#000000" || "white" }}
     >
       <div className="flex justify-between items-center mb-2">
         <h3 className="font-semibold">{title}</h3>
-        <span className="text-sm">{files}</span>
+        <span className="text-sm">{value}</span>
       </div>
     </div>
   );

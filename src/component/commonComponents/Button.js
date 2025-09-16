@@ -4,6 +4,7 @@ export default function Button({
   className = "",
   disabled = false,
   isCustomButton = false,
+  startIcon = null,
 }) {
   if (isCustomButton) {
     return (
@@ -22,7 +23,7 @@ export default function Button({
       className={`bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-navyBlueLight transition font-medium shadow-md ${className} disabled:bg-gray-400 disabled:cursor-not-allowed`}
       disabled={disabled}
     >
-      {text}
+      {startIcon ? startIcon : text}
     </button>
   );
 }

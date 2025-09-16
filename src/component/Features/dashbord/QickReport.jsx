@@ -4,7 +4,7 @@ function RecentFileItem({ title, subtitle, button, bgColor, btnColor }) {
   return (
     <div
       className={`flex justify-between items-center p-4 rounded-lg`}
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: "#FAFAFA" }}
     >
       <div>
         <p className="font-medium text-[#263238]">{title}</p>
@@ -12,7 +12,7 @@ function RecentFileItem({ title, subtitle, button, bgColor, btnColor }) {
       </div>
       <button
         className={`text-sm text-white px-4 py-2 rounded-full shadow-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg`}
-        style={{ backgroundColor: btnColor }}
+        style={{ backgroundColor: "#3B82F6" }}
       >
         {button}
       </button>
@@ -26,15 +26,11 @@ export default function RecentFiles() {
       title: "Account's need Reconnects",
       subtitle: "2 Accouts",
       button: "Reconnect",
-      bgColor: "#FAFAFA",
-      btnColor: "#3B82F6",
     },
     {
       title: "Add More Credits",
       subtitle: "10 Credits Left",
       button: "Add Credits",
-      bgColor: "#FAFAFA",
-      btnColor: "#3B82F6",
     },
   ];
 
