@@ -4,8 +4,8 @@ import store from "./store/store";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from "./component/container/auth";
-import Login from "./component/Login";
-import Dashboard from "./component/Features/dashbord/Dashboard";
+import Login from "./component/container/login";
+import Dashboard from "./component/Features/dashbord/container/dashboard";
 import Profile from "./component/Features/profile/Profile";
 import AccountManagePage from "./component/Features/ManageAccount/AccountManagePage";
 import ManageContacts from "./component/Features/Contacts/ManageContact";
