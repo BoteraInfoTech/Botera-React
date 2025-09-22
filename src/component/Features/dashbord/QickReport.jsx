@@ -20,19 +20,38 @@ function RecentFileItem({ title, subtitle, button, bgColor, btnColor }) {
   );
 }
 
-export default function RecentFiles() {
-  const files = [
-    {
-      title: "Account's need Reconnects",
-      subtitle: "2 Accouts",
-      button: "Reconnect",
-    },
-    {
-      title: "Add More Credits",
-      subtitle: "10 Credits Left",
-      button: "Add Credits",
-    },
-  ];
+export default function RecentFiles({ taskData }) {
+  const totalTasks = Object.keys(taskData);
+
+  const files = totalTasks
+    .map((task) => {
+      switch (task) {
+        case "credits": {
+          return {
+            title: "Add More Credits",
+            subtitle: `${taskData[task]} Credits Left`,
+            button: "Add Credits",
+          };
+        }
+        case "reconnect": {
+          return {
+            title: "Account's need Reconnects",
+            subtitle: `${taskData[task]} Accounts`,
+            button: "Reconnect",
+          };
+        }
+        case "knowledge": {
+          return {
+            title: "Add Knowledge Base",
+            subtitle: "Add Recent details to make auto reply more effective",
+            button: "Add",
+          };
+        }
+        default:
+          return null;
+      }
+    })
+    .filter((data) => data);
 
   return (
     <div className="bg-white p-4 sm:p-5 shadow-md mb-3 md:min-h-[418px] shadow-lg rounded-md">

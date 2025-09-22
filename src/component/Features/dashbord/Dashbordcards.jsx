@@ -14,37 +14,10 @@ function FolderCard({ title, value }) {
   );
 }
 
-export default function FolderList() {
-  const folders = [
-    {
-      title: "Remaining Credits",
-      files: `10 credits`,
-      bgColor: "#FFFFFF",
-      textColor: "#000000",
-    },
-    {
-      title: "Auto-replied",
-      files: "12 messages",
-      bgColor: "#FFFFFF",
-      textColor: "#000000",
-    },
-    {
-      title: "Pending replies",
-      files: "16 messages",
-      bgColor: "#FFFFFF",
-      textColor: "#000000",
-    },
-    {
-      title: "Failed replies",
-      files: "8 messages",
-      bgColor: "#FFFFFF",
-      textColor: "#000000",
-    },
-  ];
-
+export default function FolderList({ cardData }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 m-2 mb-3">
-      {folders.map((folder, index) => (
+      {cardData.map((folder, index) => (
         <FolderCard key={index} {...folder} />
       ))}
     </div>

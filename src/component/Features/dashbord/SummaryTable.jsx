@@ -13,14 +13,6 @@ import {
 import { CheckCircle, AccessTime, Cancel } from "@mui/icons-material";
 import { useState } from "react";
 
-const conversations = [
-  { id: 1, name: "Anna Jones", status: "Auto-replied" },
-  { id: 2, name: "David Smith", status: "Pending" },
-  { id: 3, name: "Sarah Johnson", status: "Pending" },
-  { id: 4, name: "John Doe", status: "Auto-replied" },
-  { id: 5, name: "Emily Davis", status: "Failed" },
-];
-
 const getStatusBadge = (status) => {
   switch (status) {
     case "Auto-replied":
@@ -58,7 +50,7 @@ const getStatusBadge = (status) => {
   }
 };
 
-export default function SummaryTable({ rows = conversations }) {
+export default function SummaryTable({ rows }) {
   const [filter, setFilter] = useState("All");
 
   // Filtering

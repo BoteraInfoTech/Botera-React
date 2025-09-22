@@ -2,17 +2,7 @@ import { useEffect, useRef } from "react";
 import { Chart } from "chart.js/auto";
 import { Card, CardContent } from "@mui/material";
 
-const data = [
-  { name: "Sun", auto: 11, pending: 6, failed: 4 },
-  { name: "Mon", auto: 9, pending: 5, failed: 3 },
-  { name: "Tue", auto: 8, pending: 4, failed: 2 },
-  { name: "Wed", auto: 10, pending: 6, failed: 3 },
-  { name: "Thu", auto: 12, pending: 8, failed: 4 },
-  { name: "Fri", auto: 14, pending: 10, failed: 6 },
-  { name: "Sat", auto: 9, pending: 7, failed: 3 },
-];
-
-export default function PerformanceGraph({ chartData = data }) {
+export default function PerformanceGraph({ chartData }) {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 

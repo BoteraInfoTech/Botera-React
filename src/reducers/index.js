@@ -1,11 +1,19 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import dashboardReducer from "./dashboard";
+import dashboardTask from "./dashboardTask";
+import dashboardDetails from "./dashboardDetails";
+import dashboardPerformance from "./dashboardPerformance";
+import dashboardConversation from "./dashboardConversation";
 
 // All reducers combined
 const appReducers = combineReducers({
   authReducer,
   userDetails: dashboardReducer,
+  dashboardTask,
+  dashboardDetails,
+  dashboardPerformance,
+  dashboardConversation,
 });
 
 // Root reducer with reset on logout

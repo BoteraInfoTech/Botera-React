@@ -9,7 +9,7 @@ const initialState = {
 
 const dashboardReducer = (store = initialState, action) => {
   switch (action.type) {
-    case "USER_DETAIL_FULFILLED": {
+    case "DASHBOARD_TASK_DETAIL_FULFILLED": {
       const payload = action.payload;
       return {
         ...store,
@@ -20,7 +20,7 @@ const dashboardReducer = (store = initialState, action) => {
         status: "success",
       };
     }
-    case "USER_DETAIL_PENDING": {
+    case "DASHBOARD_TASK_DETAIL_PENDING": {
       return {
         ...store,
         isLoading: true,
@@ -29,7 +29,7 @@ const dashboardReducer = (store = initialState, action) => {
         status: "pending",
       };
     }
-    case "USER_DETAIL_REJECTED": {
+    case "DASHBOARD_TASK_DETAIL_REJECTED": {
       const errorData =
         action?.payload?.response?.data ?? action?.payload ?? {};
       const firstReasonMessage = errorData?.reason?.[0]?.message;
