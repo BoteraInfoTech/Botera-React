@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function WelcomeBanner({ userDetails }) {
-  const { totalCredit, name, email } = userDetails;
+  const { totalCredit, name } = userDetails;
   const userName = name || "";
   return (
     <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 mb-4 mt-6">
