@@ -7,6 +7,8 @@ import Dropdown from "../../commonComponents/Dropdown";
 import RadioButton from "../../commonComponents/RadioButton";
 import CheckBox from "../../commonComponents/CheckBox";
 import TextBox from "../../commonComponents/TextBox";
+import TimezoneList from "../../../utils/getAllTimezone";
+import dateFormatOptions from "../../../utils/getAllDateFormate";
 
 const iconMap = {
   performance: SettingsOutlinedIcon,
@@ -16,6 +18,7 @@ const iconMap = {
 };
 export default function SectionCard({ title, formData, handleChange }) {
   const key = title && title.toLowerCase();
+
   const renderContent = () => {
     switch (key) {
       case "preferences":
@@ -25,69 +28,60 @@ export default function SectionCard({ title, formData, handleChange }) {
             <div className="flex flex-col border rounded-xl p-4">
               <Dropdown
                 label="Language"
-                value={"English"}
+                value={formData.language}
                 options={[
-                  { value: "en", label: "English" },
-                  { value: "hi", label: "Hindi" },
-                  { value: "es", label: "Spanish" },
+                  { value: "English", label: "English" },
+                  { value: "Spanish", label: "Spanish" },
+                  { value: "French", label: "French" },
+                  { value: "German", label: "German" },
+                  { value: "Turkish", label: "Turkish" },
+                  { value: "Japanese", label: "Japanese" },
+                  { value: "Arabic", label: "Arabic" },
                 ]}
-                onChange={handleChange}
+                onChange={(value) => handleChange(value, "language")}
+                searchable
               />
             </div>
             <CheckBox
-              checked={true}
+              checked={formData.mode === "D"}
               label={"Dark Mode"}
               isSwitch={true}
-              onChange={handleChange}
+              handleChange={(e, checked) =>
+                handleChange(checked ? "D" : "L", "mode")
+              }
               color={"primary"}
             />
           </div>
         );
 
-      case "date and time":
+      case "date and time": {
+        const allTimeZones = TimezoneList();
         return (
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <Dropdown
                 label="Time Zone"
-                value={"(GMT-08:00) California"}
-                options={[
-                  {
-                    value: "(GMT+05:30) Kolkata",
-                    label: "(GMT+05:30) Kolkata",
-                  },
-                  { value: "(GMT+01:00) London", label: "(GMT+01:00) London" },
-                  {
-                    value: "(GMT-08:00) California",
-                    label: "(GMT-08:00) California",
-                  },
-                ]}
-                onChange={handleChange}
+                value={formData.timeZone}
+                options={allTimeZones}
+                onChange={(value) => handleChange(value, "timeZone")}
+                searchable
               />
             </div>
             <div>
               <Dropdown
                 label="Date Format"
-                value={"DD-MMM-YYYY"}
-                options={[
-                  {
-                    value: "DD-MMM-YYYY",
-                    label: "DD-MMM-YYYY",
-                  },
-                  { value: "MM/DD/YYYY", label: "MM/DD/YYYY" },
-                  {
-                    value: "YYYY-MM-D",
-                    label: "YYYY-MM-D",
-                  },
-                ]}
-                onChange={handleChange}
+                value={formData.dateFormate}
+                options={dateFormatOptions}
+                onChange={(value) => handleChange(value, "dateFormate")}
               />
             </div>
             <div className="md:col-span-2">
               <RadioButton
-                label={" Time Format"}
-                checkedValue="12"
-                handleChange={handleChange}
+                label={"Time Format"}
+                checkedValue={formData.timeFormate}
+                handleChange={(e) =>
+                  handleChange(e.target.value, "timeFormate")
+                }
                 groupData={[
                   {
                     value: "12",
@@ -102,6 +96,7 @@ export default function SectionCard({ title, formData, handleChange }) {
             </div>
           </div>
         );
+      }
 
       case "general":
         return (
@@ -110,7 +105,7 @@ export default function SectionCard({ title, formData, handleChange }) {
               <TextBox
                 label={"Name"}
                 value={formData.fullName}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target.value, "fullName")}
                 isFullWidth
               />
             </div>
@@ -118,7 +113,7 @@ export default function SectionCard({ title, formData, handleChange }) {
               <TextBox
                 label={"Email"}
                 value={formData.email}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target.value, "email")}
                 isFullWidth
                 isReadOnly
                 className="bg-gray-100 cursor-not-allowed"
@@ -132,18 +127,22 @@ export default function SectionCard({ title, formData, handleChange }) {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <TextBox
+                type="password"
                 label={"Current Password"}
                 value={formData.currentPassword}
-                onChange={handleChange}
+                onChange={(e) =>
+                  handleChange(e.target.value, "currentPassword")
+                }
                 isFullWidth
                 placeholder={"Enter current password"}
               />
             </div>
             <div>
               <TextBox
+                type="password"
                 label={"New Password"}
                 value={formData.newPassword}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target.value, "newPassword")}
                 isFullWidth
                 placeholder={"Enter new password"}
               />

@@ -2,13 +2,19 @@ import React from "react";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import Button from "../../commonComponents/Button";
 
-export default function ProfileCard({ fullName, email }) {
+export default function ProfileCard({
+  fullName = "",
+  email = "",
+  credits = 0,
+  onUpdateProfile,
+  onDeleteProfile,
+}) {
   return (
     <div className="w-full md:w-1/3 lg:w-1/4 bg-white shadow-lg rounded-2xl p-8 flex flex-col items-center text-center relative h-auto">
       {/* Avatar */}
       <div className="relative w-24 h-24 mb-4">
         <div className="w-24 h-24 flex items-center justify-center rounded-full bg-blue-600 text-white text-3xl font-bold">
-          {fullName.charAt(0)}
+          {fullName?.charAt(0) || "o"}
         </div>
       </div>
 
@@ -24,7 +30,7 @@ export default function ProfileCard({ fullName, email }) {
             fontSize="large"
           />
           <p className="font-semibold text-lg">You're on Free Trial</p>
-          <p className="text-sm mt-2 leading-relaxed">10 credits remaining</p>
+          <p className="text-sm mt-2 leading-relaxed">{`${credits} credits remaining`}</p>
           <p className="text-sm mt-1 leading-relaxed">
             Want to continue using without interruption?
           </p>
@@ -37,11 +43,16 @@ export default function ProfileCard({ fullName, email }) {
 
       {/* Bottom Buttons */}
       <div className="mt-2 flex flex-col gap-3 w-full">
-        <Button className="px-6 py-3 " text={"Update Profile"} />
+        <Button
+          className="px-6 py-3 "
+          text={"Update Profile"}
+          onClick={onUpdateProfile}
+        />
         <Button
           className="px-6 py-3 border border-red-500 text-red-500  hover:bg-red-50"
           text={"Delete Account"}
           isCustomButton={true}
+          onClick={onDeleteProfile}
         />
       </div>
     </div>

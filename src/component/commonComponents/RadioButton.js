@@ -17,14 +17,17 @@ export default function RadioButton({
               className="flex items-center gap-2"
               key={`Radio${item.value}`}
             >
-              <input
-                type="radio"
-                name={item.value}
-                value={item.value}
-                checked={item.value === checkedValue}
-                onChange={handleChange}
-              />{" "}
-              {item.label}
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="radio"
+                  name={label}
+                  value={item.value}
+                  checked={item.value === checkedValue}
+                  onChange={handleChange}
+                  className="w-5 h-5 text-blue-600 bg-white border-gray-300 rounded-full"
+                />
+                <span className="text-base">{item.label}</span>
+              </label>
             </label>
           );
         })}

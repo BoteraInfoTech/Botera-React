@@ -13,7 +13,7 @@ const SignUp = ({ registerUser, authDetails }) => {
     firstName: "",
     phone: "",
     email: "",
-    businessSize: "",
+    businessSize: "small",
     password: "",
     remember: false,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,

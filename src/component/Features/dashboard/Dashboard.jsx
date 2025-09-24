@@ -18,7 +18,6 @@ export default function Dashboard({
   getRecentConversations,
   dashboardConversation,
 }) {
-  const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [taskData, setTaskData] = useState([]);
   const [cardData, setCardData] = useState([]);
@@ -26,52 +25,27 @@ export default function Dashboard({
   const [recentConversationData, setRecentConversation] = useState([]);
 
   //remove loader on success on get all Data
-  useEffect(() => {
-    if (
-      !(
-        userDetails.isLoading ||
-        dashboardTask.isLoading ||
-        dashboardDetails.isLoading ||
-        dashboardPerformance.isLoading ||
-        dashboardConversation.isLoading
-      )
-    ) {
-      setLoading(false);
-    }
-  }, [
-    userDetails.isLoading,
-    dashboardTask.isLoading,
-    dashboardDetails.isLoading,
-    dashboardPerformance.isLoading,
-    dashboardConversation.isLoading,
-  ]);
+  const isLoading =
+    userDetails.isLoading ||
+    dashboardTask.isLoading ||
+    dashboardDetails.isLoading ||
+    dashboardPerformance.isLoading ||
+    dashboardConversation.isLoading;
 
   // get Data For First Time
   useEffect(() => {
-    if (!dashboardTask.status) {
-      getTaskDetails();
-    }
-  }, [dashboardTask.status, getTaskDetails]);
-  useEffect(() => {
-    if (!dashboardDetails.status) {
-      getDashboardDetails();
-    }
-  }, [dashboardDetails.status, getDashboardDetails]);
-  useEffect(() => {
-    if (!userDetails.status) {
-      getUserDetails();
-    }
-  }, [getUserDetails, userDetails.status]);
-  useEffect(() => {
-    if (!dashboardPerformance.status) {
-      getPerformanceData();
-    }
-  }, [getPerformanceData, dashboardPerformance.status]);
-  useEffect(() => {
-    if (!dashboardConversation.status) {
-      getRecentConversations();
-    }
-  }, [getRecentConversations, dashboardConversation.status]);
+    getTaskDetails();
+    getDashboardDetails();
+    getUserDetails();
+    getPerformanceData();
+    getRecentConversations();
+  }, [
+    getTaskDetails,
+    getDashboardDetails,
+    getUserDetails,
+    getPerformanceData,
+    getRecentConversations,
+  ]);
 
   // set Data on Success
   useEffect(() => {
@@ -80,6 +54,7 @@ export default function Dashboard({
       setUserData(data);
     }
   }, [userDetails]);
+
   useEffect(() => {
     if (dashboardTask) {
       const data = dashboardTask?.successResponse?.response?.tasks || [];
@@ -109,7 +84,7 @@ export default function Dashboard({
 
   return (
     <div className="flex flex-col lg:flex-row bg-gray-50 ml-14 mr-4 md:ml-0 bg-[#F9FAFB]">
-      {loading ? (
+      {isLoading ? (
         <DashboardSkeleton />
       ) : (
         <>

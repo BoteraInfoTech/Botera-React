@@ -28,3 +28,9 @@ export const setToken = (token) => {
     sameSite: "Strict",
   });
 };
+
+export const logout = () => {
+  Cookies.remove(TOKEN_KEY, { path: "/" });
+  sessionStorage.clear();
+  localStorage.clear();
+};
