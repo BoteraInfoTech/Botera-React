@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../commonComponents/Button";
 
-function RecentFileItem({ title, subtitle, button, bgColor, btnColor }) {
+function RecentFileItem({ title, subtitle, button, onClick }) {
   return (
     <div
       className={`flex justify-between items-center p-4 rounded-lg`}
@@ -10,18 +12,18 @@ function RecentFileItem({ title, subtitle, button, bgColor, btnColor }) {
         <p className="font-medium text-[#263238]">{title}</p>
         <span className="text-sm text-[#26323899]">{subtitle}</span>
       </div>
-      <button
-        className={`text-sm text-white px-4 py-2 rounded-full shadow-md font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg`}
-        style={{ backgroundColor: "#3B82F6" }}
-      >
-        {button}
-      </button>
+      <Button
+        text={button}
+        className="text-sm rounded-full"
+        onClick={() => onClick()}
+      />
     </div>
   );
 }
 
-export default function RecentFiles({ taskData }) {
+export default function RecentFiles({ taskData, setShowContactUs }) {
   const totalTasks = Object.keys(taskData);
+  const navigate = useNavigate();
 
   const files = totalTasks
     .map((task) => {
@@ -31,6 +33,9 @@ export default function RecentFiles({ taskData }) {
             title: "Add More Credits",
             subtitle: `${taskData[task]} Credits Left`,
             button: "Add Credits",
+            onClick: () => {
+              setShowContactUs(true);
+            },
           };
         }
         case "reconnect": {
@@ -38,6 +43,9 @@ export default function RecentFiles({ taskData }) {
             title: "Account's need Reconnects",
             subtitle: `${taskData[task]} Accounts`,
             button: "Reconnect",
+            onClick: () => {
+              navigate("/account");
+            },
           };
         }
         case "knowledge": {
@@ -45,6 +53,9 @@ export default function RecentFiles({ taskData }) {
             title: "Add Knowledge Base",
             subtitle: "Add Recent details to make auto reply more effective",
             button: "Add",
+            onClick: () => {
+              navigate("/knowledge/add");
+            },
           };
         }
         default:

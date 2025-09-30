@@ -1,6 +1,7 @@
 import React from "react";
+import Button from "../../commonComponents/Button";
 
-export default function WelcomeBanner({ userDetails }) {
+export default function WelcomeBanner({ userDetails, setShowContactUs }) {
   const { totalCredit, name } = userDetails;
   const userName = name || "";
   return (
@@ -13,9 +14,11 @@ export default function WelcomeBanner({ userDetails }) {
           {`You have only ${totalCredit} auto-reply credits left. To continue using
           auto-replies without interruption, please reach out to our team.`}
         </p>
-        <button className="mt-3 sm:mt-4 px-3 sm:px-4 py-2 rounded bg-[#3B82F6] text-white text-sm font-medium hover:bg-[#304FFE]">
-          Contact Us
-        </button>
+        <Button
+          text={"Contact Us"}
+          className="mt-3"
+          onClick={() => setShowContactUs(true)}
+        />
       </div>
     </div>
   );
