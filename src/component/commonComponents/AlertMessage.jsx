@@ -24,18 +24,27 @@ const colors = {
   error: { bg: "#FEE2E2", text: "#B91C1C" },
 };
 
-const AlertMessage = ({ type = "info", message, duration = 4000 }) => {
+const AlertMessage = ({
+  type = "info",
+  message,
+  duration = 4000,
+  onCloseComplete,
+}) => {
   const [open, setOpen] = useState(true);
 
   const handleClose = (_, reason) => {
     if (reason === "clickaway") return;
     setOpen(false);
+    if (onCloseComplete) onCloseComplete();
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setOpen(false), duration);
+    const timer = setTimeout(() => {
+      setOpen(false);
+      if (onCloseComplete) onCloseComplete();
+    }, duration);
     return () => clearTimeout(timer);
-  }, [duration]);
+  }, [duration, onCloseComplete]);
 
   const icon = icons[type] || icons.error;
   const color = colors[type] || colors.info;

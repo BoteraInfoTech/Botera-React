@@ -9,6 +9,7 @@ import Dashboard from "./component/Features/dashboard/container/dashboard";
 import Profile from "./component/Features/profile/container/profile";
 import AccountManagePage from "./component/Features/ManageAccount/AccountManagePage";
 import ManageContacts from "./component/Features/Contacts/ManageContact";
+import WhatsAppInbox from "./component/Features/Conversations/container/whatsapp";
 import NotFound from "./component/pages/NotFound";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -63,6 +64,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ManageContacts />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/conversations/whatsapp"
+            element={
+              <ProtectedRoute>
+                <WhatsAppInbox />
               </ProtectedRoute>
             }
           />

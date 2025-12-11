@@ -5,15 +5,28 @@ export default function Button({
   disabled = false,
   isCustomButton = false,
   startIcon = null,
+  endIcon = null,
+  specialButton = false,
+  key = "",
 }) {
+  if (specialButton) {
+    return (
+      <button onClick={onClick} className={`${className}`} disabled={disabled}>
+        {text}
+      </button>
+    );
+  }
   if (isCustomButton) {
     return (
       <button
         onClick={onClick}
         className={`rounded-lg ${className}`}
         disabled={disabled}
+        key={key}
       >
+        {startIcon ? startIcon : ""}
         {text}
+        {endIcon ? endIcon : ""}
       </button>
     );
   }

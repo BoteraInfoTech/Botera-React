@@ -90,12 +90,16 @@ const callAPI = async (
   apiURL,
   method = "GET",
   apiData = {},
-  responseType = "json"
+  responseType = "json",
+  config = {}
 ) => {
   try {
-    const headers = {
-      "Content-Type": "application/json",
-    };
+    const headers = { ...(config.headers || {}) };
+    if (apiData instanceof FormData) {
+      headers["Content-Type"] = undefined;
+    } else {
+      headers["Content-Type"] = "application/json";
+    }
     const token = getToken(true);
 
     if (token) {
@@ -113,6 +117,7 @@ const callAPI = async (
       headers,
       responseType,
       withCredentials: true,
+      onUploadProgress: config.onUploadProgress,
     });
     return response.data;
   } catch (error) {

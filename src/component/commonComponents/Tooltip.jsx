@@ -1,8 +1,8 @@
-import { Tooltip } from "@mui/material";
+import { Tooltip as MUITooltip } from "@mui/material";
 
 export default function CustomizedTooltips({ children, title, placement }) {
   return (
-    <Tooltip
+    <MUITooltip
       title={title}
       placement={placement}
       arrow
@@ -21,13 +21,13 @@ export default function CustomizedTooltips({ children, title, placement }) {
             "&::before": {
               bgcolor: "white",
               border: "1px solid #ccc",
-              boxShadow: "0px 2px 6px rgba(0,0,0,0.15)", // arrow shadow
+              boxShadow: "0px 2px 6px rgba(0,0,0,0.15)",
             },
           },
         },
       }}
     >
-      {children}
-    </Tooltip>
+      <span>{children}</span>
+    </MUITooltip>
   );
 }

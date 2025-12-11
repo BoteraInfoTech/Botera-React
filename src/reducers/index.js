@@ -5,7 +5,7 @@ import dashboardTask from "./dashboardTask";
 import dashboardDetails from "./dashboardDetails";
 import dashboardPerformance from "./dashboardPerformance";
 import dashboardConversation from "./dashboardConversation";
-
+import externalMedia from "./externalMedia";
 // All reducers combined
 const appReducers = combineReducers({
   authReducer,
@@ -14,6 +14,7 @@ const appReducers = combineReducers({
   dashboardDetails,
   dashboardPerformance,
   dashboardConversation,
+  externalMedia,
 });
 
 // Root reducer with reset on logout
