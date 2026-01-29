@@ -13,7 +13,7 @@ export default function CommonImage({
 
   if (specialImage) {
     return (
-      <div>
+      <div className={`relative overflow-hidden inline-block ${className}`}>
         {!loaded && (
           <div className="absolute inset-0 animate-pulse bg-gray-200" />
         )}

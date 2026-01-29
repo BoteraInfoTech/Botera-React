@@ -8,6 +8,8 @@ export default function PageHeader({
   showButton = false,
   buttonProps = {},
 }) {
+  console.log("on Header", title);
+
   return (
     <Box
       sx={{

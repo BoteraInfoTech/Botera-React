@@ -7,7 +7,7 @@ import SignUp from "./component/container/auth";
 import Login from "./component/container/login";
 import Dashboard from "./component/Features/dashboard/container/dashboard";
 import Profile from "./component/Features/profile/container/profile";
-import AccountManagePage from "./component/Features/ManageAccount/AccountManagePage";
+import AccountManagePage from "./component/Features/ManageAccount/container/AccountManagePage";
 import ManageContacts from "./component/Features/Contacts/ManageContact";
 import WhatsAppInbox from "./component/Features/Conversations/container/whatsapp";
 import NotFound from "./component/pages/NotFound";

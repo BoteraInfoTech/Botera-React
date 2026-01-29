@@ -8,11 +8,16 @@ import Tooltip from "../../commonComponents/Tooltip";
 export default function BulkActionBar({
   search,
   setSearch,
-  selected,
-  filtered,
   allSelected,
-  setSelected,
-  handleSelectAll,
+  selectedCount,
+  onSelectAll,
+  onClearSelected,
+  onBulkDelete,
+  totalPage = 1,
+  currentPage = 1,
+  totalAccounts = 0,
+  isLoading = false,
+  onPageChange,
 }) {
   return (
     <>
@@ -28,21 +33,20 @@ export default function BulkActionBar({
           {/* Main Select All checkbox */}
           <Checkbox
             checked={allSelected}
-            indeterminate={
-              selected.length > 0 && selected.length < filtered.length
-            }
-            onChange={(e) => handleSelectAll(e.target.checked)}
+            indeterminate={!allSelected && selectedCount > 0}
+            onChange={(e) => onSelectAll(e.target.checked)}
+            disabled={totalAccounts === 0}
           />
 
           {/* Show count when some selected */}
-          {selected.length > 0 && !allSelected && (
+          {selectedCount > 0 && !allSelected && (
             <>
               <span className="text-sm m-0">
-                {selected.length} of {filtered.length} selected
+                {selectedCount} of {totalAccounts || selectedCount} selected
               </span>
               <span
                 className="text-blue-600 cursor-pointer text-sm"
-                onClick={() => handleSelectAll(true)}
+                onClick={() => onSelectAll(true)}
               >
                 Select All
               </span>
@@ -53,23 +57,23 @@ export default function BulkActionBar({
           {allSelected && (
             <span
               className="text-blue-600 cursor-pointer text-sm"
-              onClick={() => setSelected([])}
+              onClick={onClearSelected}
             >
               Deselect All
             </span>
           )}
 
           {/* Bulk Delete when selected */}
-          {selected.length > 0 && (
+          {selectedCount > 0 && (
             <Tooltip title="Delete Selected">
-              <IconButton color="error">
+              <IconButton color="error" onClick={onBulkDelete}>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
           )}
 
           {/* Search input when nothing is selected */}
-          {selected.length === 0 && (
+          {selectedCount === 0 && (
             <SearchField
               search={search}
               setSearch={setSearch}
@@ -79,7 +83,16 @@ export default function BulkActionBar({
         </Stack>
 
         {/* Pagination */}
-        <Pagination count={3} color="primary" shape="rounded" />
+        {totalPage > 1 && (
+          <Pagination
+            count={totalPage}
+            page={currentPage}
+            onChange={(_, page) => onPageChange?.(page)}
+            disabled={isLoading}
+            color="primary"
+            shape="rounded"
+          />
+        )}
       </Box>
     </>
   );

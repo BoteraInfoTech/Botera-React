@@ -49,21 +49,23 @@ export default function ConversationItem({
               </span>
             )}
 
-            <Button
-              text={
-                <PushPin
-                  style={{ fontSize: 16 }}
-                  color={conversation.pinned ? "primary" : "inherit"}
-                />
-              }
-              onClick={(e) => {
-                e.stopPropagation();
-                onTogglePin();
-              }}
-              className="rounded hover:bg-neutral-100"
-              isCustomButton
-            />
-            <Button
+            {isActive && (
+              <Button
+                text={
+                  <PushPin
+                    style={{ fontSize: 16 }}
+                    color={conversation.pinned ? "primary" : "inherit"}
+                  />
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onTogglePin();
+                }}
+                className="rounded hover:bg-neutral-100"
+                isCustomButton
+              />
+            )}
+            {/* <Button
               text={
                 <StarIcon
                   style={{ fontSize: 16 }}
@@ -118,7 +120,7 @@ export default function ConversationItem({
               }}
               className="rounded hover:bg-neutral-100"
               isCustomButton
-            />
+            /> */}
           </div>
         </div>
       </div>

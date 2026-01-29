@@ -15,14 +15,17 @@ export default function CustomModal({
   title,
   children,
   maxWidth = "md",
+  disableClose = false,
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const handleClose = disableClose ? () => {} : onClose;
+
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       maxWidth={maxWidth}
       fullWidth
       scroll="paper"
@@ -50,7 +53,8 @@ export default function CustomModal({
       >
         {title}
         <IconButton
-          onClick={onClose}
+          onClick={handleClose}
+          disabled={disableClose}
           sx={{
             position: "absolute",
             right: 12,
