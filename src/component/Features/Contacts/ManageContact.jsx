@@ -59,13 +59,14 @@ const initialContacts = [
 ];
 
 export default function ManageContacts() {
+  // eslint-disable-next-line no-unused-vars
   const [contacts, setContacts] = useState(initialContacts);
   const [search, setSearch] = useState("");
 
   const filtered = contacts.filter(
     (c) =>
       c.email.toLowerCase().includes(search.toLowerCase()) ||
-      c.mobile.includes(search)
+      c.mobile.includes(search),
   );
 
   return (

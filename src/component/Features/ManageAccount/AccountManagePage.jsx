@@ -80,7 +80,6 @@ function ManageAccounts({ accountReducer = {}, getConnectedAccounts }) {
 
   const platformId = query.get("id");
   const isReconnect = query.get("reconnect");
-  console.log({ p: query, platformId, isReconnect, location });
 
   const [openModal, setOpenModal] = useState(false);
 

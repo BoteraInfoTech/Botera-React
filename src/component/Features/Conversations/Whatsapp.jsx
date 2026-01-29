@@ -30,7 +30,7 @@ export default function PremiumInbox({
   const [dateSort, setDateSort] = useState("desc");
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [activeConversationId, setActiveConversationId] = useState(
-    conversations[0].id
+    conversations[0].id,
   );
 
   const filterList = config.availableFilter || [];
@@ -38,7 +38,7 @@ export default function PremiumInbox({
     const q = search.trim().toLowerCase();
     let list = conversations.filter(
       (c) =>
-        c.name.toLowerCase().includes(q) || c.last.toLowerCase().includes(q)
+        c.name.toLowerCase().includes(q) || c.last.toLowerCase().includes(q),
     );
     if (filter === "Unread") list = list.filter((c) => c.unread > 0);
     if (filter === "Pinned") list = list.filter((c) => c.pinned);
@@ -46,7 +46,7 @@ export default function PremiumInbox({
     list.sort((a, b) =>
       dateSort === "asc"
         ? parseTimeToMinutes(a.time) - parseTimeToMinutes(b.time)
-        : parseTimeToMinutes(b.time) - parseTimeToMinutes(a.time)
+        : parseTimeToMinutes(b.time) - parseTimeToMinutes(a.time),
     );
     return list;
   }, [conversations, filter, search, dateSort]);
@@ -55,12 +55,12 @@ export default function PremiumInbox({
     setActiveConversationId(id);
     setMessagesMap((m) => (m[id] ? m : { ...m, [id]: sampleMessages }));
     setConversations((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, unread: 0 } : c))
+      prev.map((c) => (c.id === id ? { ...c, unread: 0 } : c)),
     );
   };
   const togglePin = (id) => {
     setConversations((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, pinned: !c.pinned } : c))
+      prev.map((c) => (c.id === id ? { ...c, pinned: !c.pinned } : c)),
     );
   };
 
@@ -79,8 +79,10 @@ export default function PremiumInbox({
   const [typing, setTyping] = useState(false);
 
   const chatScrollRef = useRef(null);
+  // eslint-disable-next-line no-unused-vars
   const [showScrollBtn, setShowScrollBtn] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const messages = messagesMap[activeConversationId] || [];
 
   // Auto scroll + scroll button logic
@@ -142,8 +144,8 @@ export default function PremiumInbox({
       prev.map((c) =>
         c.id === activeConversationId
           ? { ...c, unread: 0, last: msg.text, time: msg.time }
-          : c
-      )
+          : c,
+      ),
     );
 
     // Simulated typing / reply

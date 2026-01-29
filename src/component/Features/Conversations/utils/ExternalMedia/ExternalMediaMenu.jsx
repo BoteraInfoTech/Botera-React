@@ -50,6 +50,7 @@ export default function ExternalMediaMenu({
   const [searchValue, setSearchValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("trending");
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [currentPage, setCurrentPage] = useState(1);
 
   // Sync with preloaded API data
