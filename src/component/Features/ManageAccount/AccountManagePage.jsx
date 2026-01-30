@@ -78,8 +78,17 @@ function ManageAccounts({ accountReducer = {}, getConnectedAccounts }) {
     }
   }, [location.search, navigate]);
 
-  const platformId = query.get("id");
-  const isReconnect = query.get("reconnect");
+  const encodedState = query.get("state");
+  let stateData = null;
+  if (encodedState) {
+    try {
+      stateData = JSON.parse(atob(encodedState));
+    } catch (err) {
+      console.error("Invalid OAuth state", err);
+    }
+  }
+  const platformId = stateData?.id;
+  const isReconnect = stateData?.reconnect === true;
 
   const [openModal, setOpenModal] = useState(false);
 
